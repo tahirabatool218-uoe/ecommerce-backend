@@ -1,6 +1,7 @@
 # E-Commerce Backend API
 
-A production-style RESTful e-commerce backend built with **Node.js, Express.js, and MongoDB**.  
+A production-style RESTful e-commerce backend built with **Node.js, Express.js, and MongoDB**.
+
 The API provides secure authentication, role-based authorization, product management, shopping cart functionality, and order management.
 
 ---
@@ -89,7 +90,7 @@ ecommerce-backend/
 ### 1. Clone the Repository
 
 ```bash
-git clone <your-github-repository-url>
+git clone https://github.com/tahirabatool218-uoe/ecommerce-backend.git
 cd ecommerce-backend
 ```
 
@@ -409,7 +410,7 @@ Response
 
 # 📌 Project Scope
 
-### Included
+## Included
 
 * Authentication
 * JWT authorization
@@ -422,7 +423,7 @@ Response
 * MongoDB integration
 * MVC architecture
 
-### Not Included
+## Not Included
 
 The current version does not include:
 
@@ -433,8 +434,6 @@ The current version does not include:
 * External shipping API
 * Advanced product search
 * Refresh token system
-
-These features can be added in future versions.
 
 ---
 
@@ -466,4 +465,3 @@ University of Education, Jauharabad Campus
 
 This project is developed for educational and portfolio purposes.
 
-````

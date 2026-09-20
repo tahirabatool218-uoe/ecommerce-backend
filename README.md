@@ -112,9 +112,6 @@ MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=your_super_secret_key
 JWT_EXPIRES_IN=7d
 ```
-
-> **Note:** Never commit your `.env` file or expose your database credentials and JWT secret publicly.
-
 ---
 
 ## ▶️ Running the Server

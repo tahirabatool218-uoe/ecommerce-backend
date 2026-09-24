@@ -6,7 +6,7 @@ import LoadingSpinner from "../components/ui/LoadingSpinner";
 import ErrorMessage from "../components/ui/ErrorMessage";
 import EmptyState from "../components/ui/EmptyState";
 import Button from "../components/ui/Button";
-import { CartIcon, ReceiptIcon } from "../components/ui/Icons";
+import { CartIcon, ClipboardListIcon, ReceiptIcon, ShoppingCartIcon } from "../components/ui/Icons";
 import { formatPrice } from "../utils/formatters";
 
 function formatDate(value) {
@@ -58,6 +58,7 @@ export default function DashboardPage() {
                 message="Browse products to add something to your cart."
                 actionLabel="Browse products"
                 actionTo="/products"
+                icon={<ShoppingCartIcon size={26} />}
               />
             )}
             {cartStatus === "success" && cartItemCount > 0 && (
@@ -89,6 +90,7 @@ export default function DashboardPage() {
                 message="Your recent orders will show up here."
                 actionLabel="Browse products"
                 actionTo="/products"
+                icon={<ClipboardListIcon size={26} />}
               />
             )}
             {ordersStatus === "success" && recentOrders.length > 0 && (

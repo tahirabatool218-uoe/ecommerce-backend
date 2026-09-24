@@ -130,3 +130,19 @@ export const XCircleIcon = (p) => (
     <path d="M9.2 9.2l5.6 5.6M14.8 9.2l-5.6 5.6" />
   </Icon>
 );
+
+export const ShoppingCartIcon = (p) => (
+  <Icon {...p}>
+    <circle cx="9" cy="18" r="1.4" />
+    <circle cx="17" cy="18" r="1.4" />
+    <path d="M3.5 5.5h2l2.1 9.2a1.5 1.5 0 0 0 1.5 1.2h8.8a1.5 1.5 0 0 0 1.4-1.1L20.5 7H6.1" />
+  </Icon>
+);
+
+export const ClipboardListIcon = (p) => (
+  <Icon {...p}>
+    <path d="M9 4.5v2M15 4.5v2" />
+    <path d="M7.5 7.5h9A1.5 1.5 0 0 1 18 9v8.5A2.5 2.5 0 0 1 15.5 20h-7A2.5 2.5 0 0 1 6 17.5V9a1.5 1.5 0 0 1 1.5-1.5Z" />
+    <path d="M8.5 12h7M8.5 15h7" />
+  </Icon>
+);

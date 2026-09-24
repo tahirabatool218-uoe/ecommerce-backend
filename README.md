@@ -1,45 +1,48 @@
 # E-Commerce Backend API
 
-A production-style RESTful e-commerce backend built with **Node.js, Express.js, and MongoDB**.
+A production-style RESTful e-commerce backend built with Node.js, Express.js, and MongoDB.
 
-The API provides secure authentication, role-based authorization, product management, shopping cart functionality, and order management.
+The API provides secure authentication, role-based authorization, product management, product image uploads, shopping cart functionality, and order management.
 
 ---
 
 ## 🚀 Features
 
-- 🔐 User registration and login
-- 🔑 JWT-based authentication
-- 👤 Role-based authorization (User/Admin)
-- 🔒 Password hashing with bcryptjs
-- 📦 Product CRUD operations
-- 🛒 Shopping cart management
-- 📊 Product stock validation
-- 🧾 Order creation from cart
-- 📉 Automatic stock deduction after order creation
-- 📋 User order history
-- ⚙️ Admin order management
-- 🔄 Order status management
-- 🏗️ MVC architecture
-- 🌐 RESTful API
-- 🔧 Environment variable configuration
-- 🗄️ MongoDB database integration
+* 🔐 User registration and login
+* 🔑 JWT-based authentication
+* 👤 Role-based authorization (User/Admin)
+* 🔒 Password hashing with bcryptjs
+* 📦 Product CRUD operations
+* 🖼️ Product image upload with Cloudinary
+* 🛒 Shopping cart management
+* 📊 Product stock validation
+* 🧾 Order creation from cart
+* 📉 Automatic stock deduction after order creation
+* 📋 User order history
+* ⚙️ Admin order management
+* 🔄 Order status management
+* 🏗️ MVC architecture
+* 🌐 RESTful API
+* 🔧 Environment variable configuration
+* 🗄️ MongoDB database integration
 
 ---
 
 ## 🛠️ Tech Stack
 
-| Technology | Purpose |
-|---|---|
-| **Node.js** | Backend runtime |
-| **Express.js** | REST API framework |
-| **MongoDB** | Database |
-| **Mongoose** | MongoDB ODM |
-| **JWT** | Authentication |
-| **bcryptjs** | Password hashing |
-| **dotenv** | Environment variables |
-| **CORS** | Cross-Origin Resource Sharing |
-| **Postman** | API testing |
+| Technology | Purpose                            |
+| ---------- | ---------------------------------- |
+| Node.js    | Backend runtime                    |
+| Express.js | REST API framework                 |
+| MongoDB    | Database                           |
+| Mongoose   | MongoDB ODM                        |
+| JWT        | Authentication                     |
+| bcryptjs   | Password hashing                   |
+| dotenv     | Environment variables              |
+| CORS       | Cross-Origin Resource Sharing      |
+| Multer     | File upload handling               |
+| Cloudinary | Product image storage and delivery |
+| Postman    | API testing                        |
 
 ---
 
@@ -48,31 +51,64 @@ The API provides secure authentication, role-based authorization, product manage
 ```text
 ecommerce-backend/
 │
+├── frontend/
+│   ├── public/
+│   ├── src/
+│   │   ├── assets/
+│   │   ├── components/
+│   │   │   ├── admin/
+│   │   │   ├── auth/
+│   │   │   ├── cart/
+│   │   │   ├── home/
+│   │   │   ├── layout/
+│   │   │   ├── orders/
+│   │   │   ├── product/
+│   │   │   └── ui/
+│   │   ├── context/
+│   │   ├── hooks/
+│   │   ├── layouts/
+│   │   ├── pages/
+│   │   │   ├── admin/
+│   │   │   └── ...
+│   │   ├── services/
+│   │   ├── styles/
+│   │   ├── utils/
+│   │   ├── App.jsx
+│   │   ├── config.js
+│   │   ├── main.jsx
+│   │   └── ...
+│   ├── index.html
+│   ├── package.json
+│   ├── vite.config.js
+│   ├── eslint.config.js
+│   └── README.md
+│
 ├── src/
 │   ├── config/
+│   │   ├── cloudinary.js
 │   │   └── db.js
-│   │
 │   ├── controllers/
 │   │   ├── authController.js
-│   │   ├── productController.js
 │   │   ├── cartController.js
-│   │   └── orderController.js
-│   │
+│   │   ├── orderController.js
+│   │   ├── productController.js
+│   │   └── uploadController.js
 │   ├── middleware/
+│   │   ├── adminMiddleware.js
 │   │   ├── authMiddleware.js
-│   │   └── adminMiddleware.js
-│   │
+│   │   └── uploadMiddleware.js
 │   ├── models/
-│   │   ├── User.js
-│   │   ├── Product.js
 │   │   ├── Cart.js
-│   │   └── Order.js
-│   │
-│   └── routes/
-│       ├── authRoute.js
-│       ├── productRoute.js
-│       ├── cartRoute.js
-│       └── orderRoute.js
+│   │   ├── Order.js
+│   │   ├── Product.js
+│   │   └── User.js
+│   ├── routes/
+│   │   ├── authRoute.js
+│   │   ├── cartRoute.js
+│   │   ├── orderRoute.js
+│   │   ├── productRoute.js
+│   │   └── uploadRoute.js
+│   └── utils/
 │
 ├── .env
 ├── .env.example
@@ -80,8 +116,9 @@ ecommerce-backend/
 ├── package.json
 ├── package-lock.json
 ├── README.md
-└── server.js
-````
+├── server.js
+└── .git
+```
 
 ---
 
@@ -108,10 +145,22 @@ Create a `.env` file in the project root directory:
 
 ```env
 PORT=5000
+
 MONGO_URI=your_mongodb_connection_string
+
 JWT_SECRET=your_super_secret_key
+
 JWT_EXPIRES_IN=7d
+
+CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
+
+CLOUDINARY_API_KEY=your_cloudinary_api_key
+
+CLOUDINARY_API_SECRET=your_cloudinary_api_secret
 ```
+
+Do not commit the `.env` file to GitHub.
+
 ---
 
 ## ▶️ Running the Server
@@ -199,9 +248,45 @@ A successful login returns a JWT token that is used to access protected routes.
   "price": 2500,
   "category": "Electronics",
   "stock": 10,
-  "image": "https://example.com/mouse.jpg"
+  "image": "Cloudinary secure image URL"
 }
 ```
+
+The `image` field stores the secure URL returned by Cloudinary after a product image is uploaded.
+
+---
+
+# 🖼️ Product Image Upload
+
+Product images are uploaded to Cloudinary through an admin-only upload endpoint.
+
+| Method | Endpoint                    | Access | Description                          |
+| ------ | --------------------------- | ------ | ------------------------------------ |
+| `POST` | `/api/upload/product-image` | Admin  | Upload a product image to Cloudinary |
+
+### Upload Requirements
+
+* Supported formats: JPG, JPEG, PNG, WEBP
+* Maximum file size: 5 MB
+* Images are uploaded directly to Cloudinary.
+* Image binaries are not stored in MongoDB.
+* The returned Cloudinary secure URL is saved in the product's `image` field.
+
+### Upload Request
+
+```http
+POST /api/upload/product-image
+Authorization: Bearer <admin_jwt_token>
+Content-Type: multipart/form-data
+```
+
+Form-data field:
+
+```text
+image: <selected image file>
+```
+
+The upload endpoint is protected using JWT authentication and admin authorization.
 
 ---
 
@@ -308,10 +393,10 @@ Authorization: Bearer <your_jwt_token>
 
 ### Access Levels
 
-| Role      | Access                                  |
-| --------- | --------------------------------------- |
-| **User**  | Cart and personal order operations      |
-| **Admin** | Product management and order management |
+| Role  | Access                                                  |
+| ----- | ------------------------------------------------------- |
+| User  | Cart and personal order operations                      |
+| Admin | Product management, image uploads, and order management |
 
 Admin-only routes are protected using both:
 
@@ -322,7 +407,7 @@ Admin-only routes are protected using both:
 
 # 🧪 API Testing
 
-The backend APIs were tested using **Postman**.
+The backend APIs were tested using Postman.
 
 Tested functionality includes:
 
@@ -334,6 +419,8 @@ Tested functionality includes:
 * Product retrieval
 * Product update
 * Product deletion
+* Product image upload
+* Cloudinary image storage
 * Cart creation
 * Add product to cart
 * Update cart quantity
@@ -353,10 +440,11 @@ Tested functionality includes:
 
 The application implements several basic security practices:
 
-* Passwords are hashed using **bcryptjs**.
+* Passwords are hashed using bcryptjs.
 * JWT is used for authentication.
 * Protected routes require a valid JWT.
 * Admin routes require the `admin` role.
+* Product image uploads require admin authorization.
 * Sensitive configuration is stored in environment variables.
 * `.env` is excluded from Git version control.
 
@@ -364,7 +452,7 @@ The application implements several basic security practices:
 
 # 🏗️ Architecture
 
-The backend follows the **MVC (Model-View-Controller)** architecture.
+The backend follows the MVC (Model-View-Controller) architecture.
 
 ```text
 Client / Postman
@@ -379,10 +467,30 @@ Client / Postman
  Controllers
        │
        ▼
-    Models
+   Models
        │
        ▼
-   MongoDB
+  MongoDB
+```
+
+For product image uploads, the flow additionally uses Multer and Cloudinary:
+
+```text
+Admin
+  ↓
+Upload Route
+  ↓
+Auth + Admin Middleware
+  ↓
+Multer
+  ↓
+Cloudinary
+  ↓
+Secure Image URL
+  ↓
+Product.image
+  ↓
+MongoDB
 ```
 
 ### Request Flow
@@ -413,6 +521,8 @@ Response
 * JWT authorization
 * Role-based access
 * Product management
+* Product image upload
+* Cloudinary image storage
 * Shopping cart
 * Order management
 * Stock management
@@ -451,9 +561,10 @@ Possible future improvements include:
 
 # 👩‍💻 Author
 
-**Tahira Batool**
+Tahira Batool
 
 BS Computer Science
+
 University of Education, Jauharabad Campus
 
 ---
@@ -461,4 +572,3 @@ University of Education, Jauharabad Campus
 ## 📄 License
 
 This project is developed for educational and portfolio purposes.
-

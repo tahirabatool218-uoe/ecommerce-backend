@@ -1,0 +1,68 @@
+/* ==========================================================================
+   User dashboard
+   ========================================================================== */
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  gap: var(--space-5);
+}
+
+.dashboard-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: clamp(1.25rem, 3vw, 1.75rem);
+}
+.dashboard-card__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+.dashboard-card__title {
+  font-size: var(--text-lg);
+}
+.dashboard-card__stat {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+.dashboard-orders {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.dashboard-orders__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding-block: var(--space-2);
+  border-bottom: 1px solid var(--color-border);
+}
+.dashboard-orders__item:last-child {
+  border-bottom: 0;
+}
+.dashboard-orders__id {
+  font-weight: 600;
+  font-size: var(--text-sm);
+}
+.dashboard-orders__date {
+  margin-top: 0.15rem;
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+}
+.dashboard-orders__total {
+  font-weight: 600;
+  font-size: var(--text-sm);
+  white-space: nowrap;
+}
+
+.dashboard-card--actions {
+  justify-content: flex-start;
+}
+.dashboard-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}

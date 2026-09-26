@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import Brand from "./Brand";
 import { CloseIcon, MenuIcon } from "../ui/Icons";
+import ThemeToggle from "../ui/ThemeToggle";
 import { useAuth } from "../../context/AuthContext";
 
 const NAV_LINKS = [
@@ -102,6 +103,9 @@ export default function Navbar() {
               ))}
           </ul>
           <ul className="navbar__list navbar__list--auth">
+            <li>
+              <ThemeToggle />
+            </li>
             {isAuthenticated ? (
               <>
                 <li className="navbar__user">{user?.name}</li>

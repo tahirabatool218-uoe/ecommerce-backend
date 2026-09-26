@@ -139,6 +139,19 @@ export const ShoppingCartIcon = (p) => (
   </Icon>
 );
 
+export const SunIcon = (p) => (
+  <Icon {...p}>
+    <circle cx="12" cy="12" r="4.2" />
+    <path d="M12 2.5v2.4M12 19.1v2.4M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7" />
+  </Icon>
+);
+
+export const MoonIcon = (p) => (
+  <Icon {...p}>
+    <path d="M20 14.6A8.5 8.5 0 1 1 9.4 4a6.8 6.8 0 0 0 10.6 10.6Z" />
+  </Icon>
+);
+
 export const ClipboardListIcon = (p) => (
   <Icon {...p}>
     <path d="M9 4.5v2M15 4.5v2" />

@@ -67,17 +67,21 @@ export default function Navbar() {
       <div className="container navbar">
         <Brand onClick={closeMenu} />
 
-        <button
-          ref={toggleRef}
-          type="button"
-          className="nav-toggle"
-          aria-expanded={isOpen}
-          aria-controls="primary-navigation"
-          onClick={toggleMenu}
-        >
-          <span className="sr-only">{isOpen ? "Close menu" : "Open menu"}</span>
-          {isOpen ? <CloseIcon size={22} /> : <MenuIcon size={22} />}
-        </button>
+        <div className="navbar__mobile-actions">
+          <ThemeToggle className="navbar__theme-toggle--mobile" />
+
+          <button
+            ref={toggleRef}
+            type="button"
+            className="nav-toggle"
+            aria-expanded={isOpen}
+            aria-controls="primary-navigation"
+            onClick={toggleMenu}
+          >
+            <span className="sr-only">{isOpen ? "Close menu" : "Open menu"}</span>
+            {isOpen ? <CloseIcon size={22} /> : <MenuIcon size={22} />}
+          </button>
+        </div>
 
         <nav
           id="primary-navigation"
@@ -103,7 +107,7 @@ export default function Navbar() {
               ))}
           </ul>
           <ul className="navbar__list navbar__list--auth">
-            <li>
+            <li className="navbar__theme-toggle-item">
               <ThemeToggle />
             </li>
             {isAuthenticated ? (

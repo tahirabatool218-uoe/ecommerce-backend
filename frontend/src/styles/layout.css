@@ -104,6 +104,18 @@
   background: var(--color-surface-muted);
 }
 
+/* Mobile-only cluster: theme toggle + hamburger, shown next to each other
+   at the right of the bar. Hidden entirely on desktop (removed from the
+   flex flow, same as .nav-toggle) so desktop layout/spacing is untouched. */
+.navbar__mobile-actions {
+  display: none;
+  align-items: center;
+  gap: var(--space-2);
+}
+.navbar__theme-toggle--mobile {
+  display: none;
+}
+
 .theme-toggle {
   display: grid;
   place-items: center;
@@ -129,6 +141,19 @@
 @media (max-width: 47.99rem) {
   .nav-toggle {
     display: grid;
+  }
+
+  .navbar__mobile-actions {
+    display: flex;
+  }
+  .navbar__theme-toggle--mobile {
+    display: grid;
+  }
+  /* The theme toggle now lives in .navbar__mobile-actions on mobile, so
+     hide the original (desktop-position) instance inside the dropdown
+     menu to avoid showing it twice when the menu is opened. */
+  .navbar__theme-toggle-item {
+    display: none;
   }
 
   .navbar__nav {

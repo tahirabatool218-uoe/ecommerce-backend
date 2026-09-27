@@ -133,6 +133,36 @@
   cursor: not-allowed;
 }
 
+.field__input-wrap {
+  position: relative;
+  display: flex;
+}
+.input--with-icon {
+  padding-right: 2.75rem;
+}
+.field__visibility-toggle {
+  position: absolute;
+  top: 50%;
+  right: 0.35rem;
+  transform: translateY(-50%);
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  background: transparent;
+  border: 0;
+  border-radius: var(--radius-sm);
+  color: var(--color-text-muted);
+  cursor: pointer;
+}
+.field__visibility-toggle:hover {
+  color: var(--color-ink);
+}
+.field__visibility-toggle:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
 /* ---------- Card ---------- */
 .card {
   background: var(--color-surface);

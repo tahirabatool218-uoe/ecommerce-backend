@@ -3,6 +3,7 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 import useDocumentTitle from "../hooks/useDocumentTitle";
 import { useAuth } from "../context/AuthContext";
 import { getErrorMessage } from "../utils/errors";
+import PasswordInput from "../components/ui/PasswordInput";
 
 const INITIAL_FORM = { name: "", email: "", password: "", confirmPassword: "" };
 
@@ -132,16 +133,14 @@ export default function RegisterPage() {
                 <label className="field__label" htmlFor="register-password">
                   Password
                 </label>
-                <input
+                <PasswordInput
                   id="register-password"
                   name="password"
-                  className="input"
-                  type="password"
                   autoComplete="new-password"
                   value={form.password}
                   onChange={handleChange}
-                  aria-invalid={Boolean(fieldErrors.password)}
-                  aria-describedby={fieldErrors.password ? "register-password-error" : undefined}
+                  ariaInvalid={Boolean(fieldErrors.password)}
+                  ariaDescribedBy={fieldErrors.password ? "register-password-error" : undefined}
                 />
                 {fieldErrors.password && (
                   <p className="field__error" id="register-password-error">
@@ -154,16 +153,14 @@ export default function RegisterPage() {
                 <label className="field__label" htmlFor="register-confirm-password">
                   Confirm password
                 </label>
-                <input
+                <PasswordInput
                   id="register-confirm-password"
                   name="confirmPassword"
-                  className="input"
-                  type="password"
                   autoComplete="new-password"
                   value={form.confirmPassword}
                   onChange={handleChange}
-                  aria-invalid={Boolean(fieldErrors.confirmPassword)}
-                  aria-describedby={fieldErrors.confirmPassword ? "register-confirm-password-error" : undefined}
+                  ariaInvalid={Boolean(fieldErrors.confirmPassword)}
+                  ariaDescribedBy={fieldErrors.confirmPassword ? "register-confirm-password-error" : undefined}
                 />
                 {fieldErrors.confirmPassword && (
                   <p className="field__error" id="register-confirm-password-error">

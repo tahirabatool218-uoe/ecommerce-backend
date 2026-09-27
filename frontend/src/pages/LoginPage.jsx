@@ -3,6 +3,7 @@ import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import useDocumentTitle from "../hooks/useDocumentTitle";
 import { useAuth } from "../context/AuthContext";
 import { getErrorMessage } from "../utils/errors";
+import PasswordInput from "../components/ui/PasswordInput";
 
 const INITIAL_FORM = { email: "", password: "" };
 
@@ -106,16 +107,14 @@ export default function LoginPage() {
                 <label className="field__label" htmlFor="login-password">
                   Password
                 </label>
-                <input
+                <PasswordInput
                   id="login-password"
                   name="password"
-                  className="input"
-                  type="password"
                   autoComplete="current-password"
                   value={form.password}
                   onChange={handleChange}
-                  aria-invalid={Boolean(fieldErrors.password)}
-                  aria-describedby={fieldErrors.password ? "login-password-error" : undefined}
+                  ariaInvalid={Boolean(fieldErrors.password)}
+                  ariaDescribedBy={fieldErrors.password ? "login-password-error" : undefined}
                 />
                 {fieldErrors.password && (
                   <p className="field__error" id="login-password-error">
